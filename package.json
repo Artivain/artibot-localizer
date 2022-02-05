@@ -1,0 +1,38 @@
+{
+  "name": "artibot-localizer",
+  "version": "1.0.0",
+  "description": "Small and simple localization module for the Artibot project",
+  "main": "localizer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Artivain/artibot-localizer.git"
+  },
+  "keywords": [
+    "localization",
+    "simple",
+    "artivain",
+    "artibot",
+    "discord"
+  ],
+  "author": {
+    "name": "Artivain",
+    "email": "info@artivain.com",
+    "url": "https://artivain.com"
+  },
+  "contributors": [
+    {
+      "name": "GoudronViande24",
+      "email": "thomas@artivain.com",
+      "url": "https://github.com/GoudronViande24"
+    }
+  ],
+  "funding": "https://paypal.me/artivain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Artivain/artibot-localizer/issues"
+  },
+  "homepage": "https://github.com/Artivain/artibot-localizer#readme"
+}
