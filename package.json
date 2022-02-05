@@ -1,6 +1,6 @@
 {
   "name": "artibot-localizer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Small and simple localization module for the Artibot project",
   "main": "localizer.js",
   "scripts": {
