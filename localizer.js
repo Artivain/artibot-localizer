@@ -29,8 +29,8 @@ module.exports = class Localizer {
 
 	/**
 	 * Update this localizer's lang without changing the entire config
-	 * @param {LocalizerConfig.lang} [lang] - The language code to use (ex.: "EN")
-	 * @return {string}
+	 * @param {string} [lang] - The language code to use (ex.: "EN")
+	 * @return {string} - The new locale code
 	 */
 	setLocale(lang = this.file.default.toLowerCase()) {
 		this.lang = lang;
