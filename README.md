@@ -1,4 +1,7 @@
 # artibot-localizer
+
+[![CodeFactor](https://www.codefactor.io/repository/github/artivain/artibot-localizer/badge)](https://www.codefactor.io/repository/github/artivain/artibot-localizer)
+
 Small and simple localization module for the Artibot project
 
 Yes, this is commonjs only. It has been made for the [Artibot](https://github.com/Artivain/artibot) project, which is in commonjs.
