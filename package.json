@@ -1,6 +1,6 @@
 {
   "name": "artibot-localizer",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Small and simple localization module for the Artibot project",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,6 +8,9 @@
     "prepublish": "tsc",
     "test": "node --loader ts-node/esm testing.ts"
   },
+	"files": [
+		"dist/"
+	],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Artivain/artibot-localizer.git"
