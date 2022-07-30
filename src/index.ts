@@ -62,13 +62,12 @@ export default class Localizer {
 		if (lang == this.file.default) return string;
 
 		try {
-			var translated = this.file.strings[string][lang];
+			string = this.file.strings[string][lang];
 		} catch {
 			throw new Error("Localizer: An error occured when trying to translate this string. Maybe it just does not exist in the file or you made an error in it.")
 		}
 
-		if (translated) return translated;
-		return string
+		return string;
 	}
 
 	/**
