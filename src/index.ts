@@ -1,11 +1,11 @@
 import fs from "fs";
 
-export abstract class LocalizerConfig {
+abstract class LocalizerConfig {
 	filePath: string;
 	lang?: string;
 }
 
-export default class Localizer {
+class Localizer {
 	/**
 	 * Translation tool for Artibot
 	 * @author GoudronViande24
@@ -98,3 +98,6 @@ export default class Localizer {
 		this.file = JSON.parse(fs.readFileSync(filePath).toString());
 	}
 }
+
+module.exports = Localizer;
+export default Localizer;
