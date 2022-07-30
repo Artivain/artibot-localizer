@@ -1,0 +1,16 @@
+{
+	"version": "1.0.0",
+	"localizerVersion": 1,
+	"default": "en",
+	"contributors": [
+		"GoudronViande24"
+	],
+	"strings": {
+		"testing message": {
+			"fr": "message de test"
+		},
+		"testing message with placeholder: [[0]]": {
+			"fr": "message de test avec [[0]] placeholder"
+		}
+	}
+}

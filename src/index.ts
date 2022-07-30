@@ -1,49 +1,61 @@
-const fs = require("fs");
+import fs from "fs";
 
-/**
- * @typedef {Object} LocalizerConfig - Configuration for the localizer
- * @property {string} filePath - Path to file with the translations
- * @property {string} [lang] - Language code to use (ex.: "EN" for english)
- */
+export abstract class LocalizerConfig {
+	filePath: string;
+	lang?: string;
+}
 
-module.exports = class Localizer {
+export default class Localizer {
 	/**
 	 * Translation tool for Artibot
 	 * @author GoudronViande24
 	 * @since 1.0.0
 	 * @param {LocalizerConfig} config - The configuration for this localizer
 	 */
-	constructor(config) {
+	constructor(config: LocalizerConfig) {
 		this.updateConfig(config);
+	}
+
+	lang: string;
+	file: {
+		default: string;
+		strings: {
+			[x: string]: {
+				[x: string]: string;
+			};
+		};
 	};
+	filePath: string;
 
 	/**
 	 * Update this localizer's configuration
 	 * @param {LocalizerConfig} config - Configuration for the localizer
+	 * @throws {Error}
 	 */
-	updateConfig(config) {
+	updateConfig(config: LocalizerConfig): void {
 		if (!config.filePath || typeof config.filePath != "string") throw new Error("'file' parameter must be a non-empty string");
 		this.updateTranslationsFile(config.filePath);
 		this.setLocale(config.lang);
-	};
+	}
 
 	/**
 	 * Update this localizer's lang without changing the entire config
-	 * @param {string} [lang] - The language code to use (ex.: "EN")
-	 * @return {string} - The new locale code
+	 * @param {String} [lang] - The language code to use (ex.: "EN")
+	 * @returns {String} - The new locale code
 	 */
-	setLocale(lang = this.file.default.toLowerCase()) {
+	setLocale(lang: string = this.file.default.toLowerCase()): string {
 		this.lang = lang;
 		return this.lang;
-	};
+	}
 
 	/**
 	 * Translate a string
-	 * @param {string} string - The string to translate
-	 * @param {string} [lang] - The lang to translate this string into
-	 * @returns {string} The translated string
+	 * @param {String} string - The string to translate
+	 * @param {String} [lang] - The lang to translate this string into
+	 * @returns {String} The translated string
+	 * @throws {Error}
 	 */
-	translate(string, lang = this.lang) {
+	translate(string: string, lang: string = this.lang): string {
 		if (!string || typeof string != "string") throw new Error("'string' parameter must be a non-empty string");
 		lang = lang.toLowerCase();
 
@@ -57,21 +69,22 @@ module.exports = class Localizer {
 
 		if (translated) return translated;
 		return string
-	};
+	}
 
 	/**
 	 * Translate a string and replace the placeholders with specified values
-	 * @param {string} string - The string to translate
+	 * @param {String} string - The string to translate
 	 * @param {Object} settings - Parameters for the translation
-	 * @param {string} [settings.lang] - The lang to translate this string into
-	 * @param {string[]} settings.placeholders - List of the placeholders values to insert into the translated string
-	 * @returns {string}
+	 * @param {String} [settings.lang] - The lang to translate this string into
+	 * @param {String[]} settings.placeholders - List of the placeholders values to insert into the translated string
+	 * @returns {String}
 	 */
-	translateWithPlaceholders(string, { lang, placeholders }) {
+	translateWithPlaceholders(string: string, settings: { lang?: string, placeholders: string[] }): string {
+		const { lang, placeholders } = settings;
 		let translated = this.translate(string, lang);
 		placeholders.forEach((placeholder, i) => translated = translated.replaceAll(`[[${i}]]`, placeholder));
-		return translated
-	};
+		return translated;
+	}
 
 	_ = this.translate;
 
@@ -79,12 +92,10 @@ module.exports = class Localizer {
 
 	/**
 	 * Update the translation file
-	 * @param {string} [filePath] - The path to the translation file
+	 * @param {String} [filePath] - The path to the translation file
 	 */
-	updateTranslationsFile(filePath = this.filePath) {
+	updateTranslationsFile(filePath: string = this.filePath): void {
 		this.filePath = filePath;
-
-		/** @type {Object} */
-		this.file = JSON.parse(fs.readFileSync(filePath));
-	};
-};
+		this.file = JSON.parse(fs.readFileSync(filePath).toString());
+	}
+}
